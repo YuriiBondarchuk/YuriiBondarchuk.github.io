@@ -1,0 +1,33 @@
+.avatar {
+  background-color: #2b2b2b;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid;
+  display: inline-block;
+  text-align: center;
+}
+li {
+  display: inline-block;
+  position: relative;
+  list-style-type: none;
+  padding: 10px;
+  margin: 10px;
+}
+li h2 {
+  display: inline;
+}
+li div {
+  position: absolute;
+  float: left;
+}
+li h4 {
+  position: relative;
+  left: 80px;
+}
+span {
+  color: #fff;
+  position: relative;
+  top: 30px;
+  font-size: 32px;
+}

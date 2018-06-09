@@ -7,27 +7,23 @@
   display: inline-block;
   text-align: center;
 }
-li {
+div div {
+  width: 300px;
+  height: 150px;
   display: inline-block;
-  position: relative;
-  list-style-type: none;
-  padding: 10px;
-  margin: 10px;
-}
-li h2 {
-  display: inline;
-}
-li div {
-  position: absolute;
-  float: left;
-}
-li h4 {
-  position: relative;
-  left: 80px;
+  margin: 20px;
 }
 span {
   color: #fff;
   position: relative;
   top: 30px;
   font-size: 32px;
+}
+img,
+p {
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  float: left;
+  margin: 8px;
 }

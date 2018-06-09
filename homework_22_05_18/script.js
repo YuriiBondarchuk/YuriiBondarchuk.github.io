@@ -1,6 +1,58 @@
 var app = angular.module('app',[]);
 
 
+app.directive('listUser1', function () {
+    return {
+        restrict : 'EA',
+        templateUrl : 'html/listUser.html',
+        scope : {
+            info : '='
+        }
+            }
+})
+app.directive('listUser2', function () {
+    return {
+        restrict : 'EA',
+        templateUrl : 'html/listUser.html',
+        scope : {
+            info : '='
+        }
+    }
+})
+app.directive('listUser3', function () {
+    return {
+        restrict : 'EA',
+        templateUrl : 'html/listUser.html',
+        scope : {
+            info : '='
+        }
+    }
+})
+app.directive('listUser4', function () {
+    return {
+        restrict : 'EA',
+        templateUrl : 'html/listUser.html',
+        scope : {
+            info : '='
+        }
+    }
+})
+
+app.directive('listUser5', function () {
+    return {
+        restrict : 'EA',
+        templateUrl : 'html/listUser.html',
+        scope : {
+            info : '='
+        }
+    }
+})
+
+
+
+
+
+
 app.controller('ListUserController',function () {
    this.avatar = function () {
        return console.log (this.student[0].name)
@@ -17,7 +69,7 @@ app.controller('ListUserController',function () {
            name : "Harry Robinson",
            avatar : "HarryRobinson.jpg",
            profession : 'writer',
-           avatarnik : "HR"
+           avatarnik : 'HR'
        },
        {
            name : 'Yurii Mororzov',

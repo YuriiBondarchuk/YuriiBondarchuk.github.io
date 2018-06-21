@@ -18,14 +18,83 @@
     <h3>Оставайся всегда совершенной </h3>
 </header>
 
+<!--Спиок товаров добавленых в корзину-->
+<div class="list-group basket" ng-controller="SomeController as someCtrl" ng-show="ShowBasket()">
+    <h2 class="list-group-item-heading">В корзине:</h2>
+   <div  ng-repeat="product in someCtrl.getMethod() track by $index" >
+    <a  class="list-group-item">
+        <h4 class="list-group-item-heading">Catalog №  {{someCtrl.getMethod()[$index]['article']}}</h4>
+        <hr>
+        <p class="list-group-item-text">{{someCtrl.getMethod()[$index]['description']}}</p>
+        <hr><hr>
+    </a>
+   </div>
+
+    <button class="btn btn-danger" ng-Click="Clear()">Clear</button>
+    <button class="btn btn-success" ng-Click="ExitBasket()">EXIT</button>
+</div>
+<div ng-controller="SomeController as someCtrl">
+
+</div>
+<!--****************************************-->
+
+<!--Modal-->
+
+<div class="modals" ng-controller="ModalController as modalCtrl" ng-show="modalCtrl.hideModal()">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="modalCtrl.closeModal()">&times;</button>
+                <h4 class="modal-title">Подтвердите действие</h4>
+
+            </div>
+            <div class="modal-body">
+                <p>{{modalCtrl.getModal}}</p>
+            </div>
+            <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" ng-click="modalCtrl.yesBasket('yes')">Yes</button>
+               <button type="button" class="btn btn-default" ng-click="modalCtrl.closeModal()">No</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--****************************************************-->
+<div style="float: right;" ng-controller="BasketController as basket">
+    <input type="image" id="basket" src="icons/basket.ico" ng-click="BasketShow($event)"><br>
+
+    <span>{{(basket.getBasket()==0) ? basket.getBasketMessage() : basket.getBasket()  + basket.getBasketMessage()  }}</span>
+
+
+</div>
+<hr>
+
+<div style="display: inline-flex;" ng-controller="PromoController as promoCtrl">
+    <p>Ведите промокод :</p>
+    <input type="text" class="form-control" ng-model="promokod">
+    <button class="btn btn-success" ng-click="addPromo()"> Send</button>
+
+
+
+</div>
+
 <div ng-controller="PageController as page">
     <input type="image" name="" id="plit" src="icons/plit.ico" ng-click="funclick($event)">
     <input type="image" name="" id="spisok" src="icons/spis.ico" ng-click="funclick($event)">
 </div>
 
-<div class="content wrapper" ng-class="{'app-loaded': true}" ng-controller="ProductsController as product" >
-    <p>{{t}},{{f}}</p>
-    <div class="model" ng-repeat="model in product.model" ng-controller="TabController as tab" >
+
+
+
+
+
+<div class="content wrapper" ng-class="{'app-loaded': true}" ng-controller="ProductsController as product">
+
+
+
+    <div class="model" ng-repeat="model in product.model" ng-controller="TabController as tab">
         <span> № {{model.article}} </span>
 
         <div class="gallery" ng-controller="GalleryController as gallery">
@@ -39,9 +108,9 @@
                 </li>
             </ul>
         </div>
-
-        <button type="button">to buy</button>
-
+        <div ng-controller="ProductsController as product">
+        <button type="button" ng-click="someClick(model)">Buy</button>
+        </div>
         <ul class="nav nav-pills">
             <li><a href ng-click="tab.selectedTab(1)">Description</a></li>
             <li><a href ng-click="tab.selectedTab(2)">Size</a></li>
@@ -70,14 +139,21 @@
                       ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
 
                     <blockquote>
-                        <b>Size:</b> {{ reviewCtrl.review.size }} <br><hr>
-                        <b>Country: </b>{{ reviewCtrl.review.country }}<br><hr>
+                        <b>Size:</b> {{ reviewCtrl.review.size }} <br>
+                        <hr>
+                        <b>Country: </b>{{ reviewCtrl.review.country }}<br>
+                        <hr>
                         <b>Do you like it ? </b><br>
-                        {{ ((reviewCtrl.review.like) ? 'Yes' : 'No' )}}<br><hr>
-                        <b>Dress length :</b><br>{{ reviewCtrl.review.long }}<br><hr>
-                        <b>Choose a color :</b><br>{{ reviewCtrl.arr.join() }}<br><hr>
+                        {{ ((reviewCtrl.review.like) ? 'Yes' : 'No' )}}<br>
+                        <hr>
+                        <b>Dress length :</b><br>{{ reviewCtrl.review.long }}<br>
+                        <hr>
+                        <b>Choose a color :</b><br>{{ reviewCtrl.arr.join() }}<br>
+                        <hr>
 
-                        <div><b>Description: </b><i>– {{ reviewCtrl.review.description }}</i></div><br><br><hr>
+                        <div><b>Description: </b><i>– {{ reviewCtrl.review.description }}</i></div>
+                        <br><br>
+                        <hr>
                     </blockquote>
 
 
@@ -118,11 +194,11 @@
 
                     <fieldset class="form-group">Dress length?<br>
                         A short <input
-                               type="radio"
-                               ng-model="reviewCtrl.review.long"
-                               type="radio"
-                               value="A short"
-                           /><br>
+                                type="radio"
+                                ng-model="reviewCtrl.review.long"
+                                type="radio"
+                                value="A short"
+                        /><br>
                         Long <input
                                 type="radio"
                                 ng-model="reviewCtrl.review.long"
@@ -131,19 +207,19 @@
                         /><br>
 
                     </fieldset>
-                    <fieldset class="form-group" >
+                    <fieldset class="form-group">
                         <select ng-model="colors">
                             <option value="">Select a colors</option>
                             <option
                                     ng-repeat="colors in reviewCtrl.colors"
                                     value="{{ colors }}">{{ colors }}
                             </option>
-                         </select><br>
-                        <input type="button" ng-click= "reviewCtrl.addReview(colors)" value="Add..."/>
+                        </select><br>
+                        <input type="button" ng-click="reviewCtrl.addReview(colors)" value="Add..."/>
 
                     </fieldset>
                     <!--<fieldset class="form-group">-->
-                        <!--<input class="btn btn-primary" type="submit" value="Submit" />-->
+                    <!--<input class="btn btn-primary" type="submit" value="Submit" />-->
 
                     <!--</fieldset>-->
                 </form>
@@ -152,8 +228,7 @@
         </div>
 
     </div>
-        <!--построение списка-->
-
+    <!--построение списка-->
 
 
     <div class="spisok_main" ng-repeat="model in product.model">

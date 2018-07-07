@@ -1,4 +1,6 @@
-import React, {Component, } from 'react';
+import React, {Component } from 'react';
+import {Button, Modal} from 'react-bootstrap';
+import './Trigger.css';
 
 class Trigger extends Component {
 
@@ -6,6 +8,7 @@ class Trigger extends Component {
         super(props, context);
 
         this.handleHide = this.handleHide.bind(this);
+        this.clickBuyOk = this.clickBuyOk.bind(this);
 
         this.state = {
             show: false
@@ -14,16 +17,24 @@ class Trigger extends Component {
 
     handleHide() {
         this.setState({ show: false });
+
     }
+    clickBuyOk() {
+        this.props.click();
+        this.setState({ show: false });
+    }
+
     render() {
         return (
-            <div className="modal-container" style={{ height: 200 }}>
+            <div className="modal-container" id={'modal_button'} style={{ height: 200 }}>
                 <Button
+
                     bsStyle="primary"
-                    bsSize="large"
-                    onClick={() => this.setState({ show: true })}
+                    bsSize="small"
+                    onClick={()=>this.setState({show:true})}
+
                 >
-                    Launch contained modal
+                   Buy
                 </Button>
 
                 <Modal
@@ -34,15 +45,16 @@ class Trigger extends Component {
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title">
-                            Contained Modal
+                            Basket
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        Elit est explicabo ipsum eaque dolorem blanditiis doloribus sed id
-                        ipsam, beatae, rem fuga id earum? Inventore et facilis obcaecati.
+                        Do you really want to buy?
                     </Modal.Body>
                     <Modal.Footer>
+                        <Button onClick={this.clickBuyOk}>Yes</Button>
                         <Button onClick={this.handleHide}>Close</Button>
+
                     </Modal.Footer>
                 </Modal>
             </div>

@@ -2,3 +2,7 @@ ol {
     display: inline-block;
     text-align: left;
 }
+li {
+    margin-right: 40px;
+    height: 40px;
+}

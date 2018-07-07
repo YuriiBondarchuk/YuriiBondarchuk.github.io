@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import List from './List'
+import List from './List';
+
+
 
 class App extends Component {
   render() {
@@ -12,9 +14,11 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-          <List ref={List=>this.listRef=List}>
+          <List >
 
           </List>
+
+
       </div>
     );
   }
